@@ -1,0 +1,14 @@
+production: &ldap_defaults
+  hostname: <%= ENV.fetch('LDAP_HOST', '127.0.0.1') %>
+  basedn:   <%= ENV.fetch('LDAP_BASEDN', 'dc=shihadeh,dc=cloud') %>
+  rootdn:   <%= ENV.fetch('LDAP_ROOTDN', 'cn=admin,dc=shihadeh,dc=cloud') %>
+  passdn:   <%= ENV.fetch('LDAP_PASSDN', 'test1234') %>
+  scope: :subtree
+  auth: true
+  port:                   <%= ENV.fetch('LDAP_PORT', '389') %>
+  username_ldap_attribut: <%= ENV.fetch('LDAP_USERNAME_LDAP_ATTRIBUT', 'givenName') %>
+  ldap_group_base:        <%= ENV.fetch('LDAP_LDAP_GROUP_BASE', 'ou=Groups,dc=shihadeh,dc=cloud') %>
+  ldap_group_filter:      <%= ENV.fetch('LDAP_LDAP_GROUP_FILTER', '(&(objectClass=groupOfNames)(member={dn}))') %>
+  ldaps: false
+  starttls: false
+  tls_options: nil
