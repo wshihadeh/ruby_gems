@@ -12,7 +12,7 @@ RUN addgroup -g 1000 rubygems && \
     adduser -S -G rubygems -u 1000 -h /application rubygems && \
     chown -R rubygems /usr/local/bundle && \
     apk update && \
-    apk add linux-headers build-base curl openldap-dev && \
+    apk add linux-headers build-base curl openldap-dev git && \
     rm -rf /var/cache/apk/*
 
 ADD . /application
