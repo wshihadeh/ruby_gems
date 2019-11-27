@@ -1,0 +1,2 @@
+#!/bin/sh
+irb -I ./lib -r ./config/application.rb
