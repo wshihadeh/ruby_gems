@@ -10,5 +10,7 @@ rackup      DefaultRackup
 port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 
-pidfile "#{App.root}/tmp/puma.pid"
-state_path "#{App.root}/tmp/puma.state"
+root_path = Pathname.new(File.expand_path('..', __dir__))
+
+pidfile "#{root_path}/tmp/puma.pid"
+state_path "#{root_path}/tmp/puma.state"
