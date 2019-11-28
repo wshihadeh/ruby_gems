@@ -8,7 +8,8 @@ module GeminaboxApp
     class SignUp < Rack::Auth::Ldap
       include Common
 
-      def initialize(app, config_options = {})
+      def initialize(app, ldap, config_options = {})
+        @ldap = ldap
         super(app, config_options)
       end
 
@@ -16,20 +17,43 @@ module GeminaboxApp
         request = Rack::Request.new(env)
         return @app.call(env) unless sign_up_request?(request)
 
-        result = super
-        api_key = create_or_find_user_api_key(env['REMOTE_USER'])
+        auth = ldap_auth_request(env)
+        return auth unless auth.is_a? Rack::Auth::Ldap::Request
 
-        return result if api_key.nil? || result.first == 401
+        api_key = create_or_find_user_api_key(
+          env['REMOTE_USER'],
+          env['REMOTE_USER_DN']
+        )
 
         html_response(200, "<h1>Your Api Key is : #{api_key}</h1>")
+      rescue StandardError
+        unauthorized
       end
 
       private
 
-      def create_or_find_user_api_key(user)
-        return if user.nil?
+      def ldap_auth_request(env)
+        auth = Rack::Auth::Ldap::Request.new(env)
+        return unauthorized unless auth.provided?
+        return bad_request unless auth.basic?
 
-        user = User.find(user) || User.new(user, SecureRandom.uuid).save
+        valid_user = valid?(auth)
+        return unauthorized unless valid_user
+
+        env['REMOTE_USER'] = auth.username
+        env['REMOTE_USER_DN'] = valid_user.first.dn
+
+        auth
+      end
+
+      def create_or_find_user_api_key(username, user_dn)
+        raise if username.nil?
+
+        ldap_groups = @ldap.groups_of(user_dn)
+        user = User.find(username) || User.new(username, SecureRandom.uuid)
+        user.ldap_groups = ldap_groups
+        user.save
+
         ApiKeyIndex.new(user.api_key, user).save
         user.api_key
       end

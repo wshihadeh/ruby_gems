@@ -27,7 +27,6 @@ module GeminaboxApp
 
       def ldap_auth_request(env)
         auth = Rack::Auth::Ldap::Request.new(env)
-        Rack::Auth::Ldap::Request.new(env)
         return unauthorized unless auth.provided?
         return bad_request unless auth.basic?
         return unauthorized unless valid?(auth)
