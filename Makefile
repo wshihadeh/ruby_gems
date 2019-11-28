@@ -42,7 +42,6 @@ build:
 # Push Docker image
 push:
 	@echo "Pushing Docker images ..."
-	docker push ${IMG}:${COMMIT_HASH}; \
 	docker push ${IMG}:${IMAGE_TAG};
 
 auto_build: config build push clean
