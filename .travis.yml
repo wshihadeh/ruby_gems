@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+- 2.6.4
+branches:
+  only:
+  - master
+before_script:
+- echo $DOCKER_TOKEN | docker login -u $DOCKER_NAMESPACE  --password-stdin
+script:
+- IMAGE_TAG=latest make auto_build
+notifications:
+  email: false
+  slack:
+    if: branch = master
+    rooms:
+      secure: OZqLBfN3oRtkvNSOl02z5q6ca4xJplmQWY6HN514Wpyn4G4WJohBSbs44jF12nA87N06kCEW+GRw5Ubqrfnkxv7H9pmL4M9F+G6/eesrOR/4K0XD7upnr0EbG961pUV6sWSKvCTEbZNUIKcrlVMpUb3Zi5P0BfNwaDQ/WtYaeqHz+/vbvBUUj3lweKrmmIlDGZKbwyLhfHWF+COAsku1Ti7U9tf1AkVQYid5GdLfLKj2i0lMOudR90zJ2U4Jh54F07KweSfWFzIUn5Qwoyqn10EVRop1T8P22+rl7iJUgTXrSyxAVMGy6Kcz8El54JIUY6l1wbWorQFJG0XlMUVcCqqDGmCIyrDL+T3KclIjoUrD3KWLN+XBCzQ9XyRZkcxQZ0j4TnEerk1/Mq8FiOePnoMjEXWfZw9MnlrJCqyJ1OTXFYyEJ3slczrO1eySY9bP7c0VLInzFRrG1qNa+WlBUD65uETU1z0VfD4z7DH5K/oX/zsduK6PuA+7coYeivfYv28oE0RXy6I4rQz0dWh4rnE8F9tyMS2pNe8wlbUqsqAov7hzG3MfNUwB+Lh/wTM4l7cAi5ng04aLMp9t9BUnuzVylq2u5kuPR5sAU/PXT0le/i4eqQz9NIukhOH2JglMDYn8aA7jyuQTzz59L1xLaFmNIqh8+2u7wUZjr+gVaXw=
