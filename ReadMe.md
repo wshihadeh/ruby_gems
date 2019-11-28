@@ -70,11 +70,11 @@ This project is built on top of [Geminabox](https://github.com/geminabox/geminab
  - PORT
 
 # Middleware
-- ApiKey
-- HealthCheck : midiilware for supporting health check endpoints under `http://host/health`
-- SignUp
-- ApiGem
-- WebRequestsLdapAuth
+- HealthCheck : Middleware for supporting health check endpoints under `http://host/health`.
+- SignUp : Middleware for supporting signup endpoints under `http://host/signup`. The user need to provide ldap credintails and as a result of vaild credintails an api key will be gnerated for the user.
+- ApiKey: Middleware for supporting api_key endpoint under `http://host//api/v1/api_key` This is used by the `gem signin` command line.The user need to provide ldap credintails and as a result of vaild credintails an api key will be gnerated for the user. and it wiill be stored in `~/.gem/credentials`.
+- ApiGem : Middleware for validation and control api requests to `/api/v1/gems` (push gems) and `/api/v1/gems/yank` (yank a gem). The Middleware checks if the api key used is allowed to do the operations and take care of updaing/collect the gems metadata.
+- WebRequestsLdapAuth: Middleware for validation and control web requests upload and delete gems form the ui. The Middleware checks if the user is allowed to do the operations and take care of updaing/collect the gems metadata.
 
 # Docker
 
