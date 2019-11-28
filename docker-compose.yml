@@ -12,6 +12,7 @@ services:
     environment:
       - PORT=8080
       - GEM_DATA_DIR_PATH=/application/data
+      - STORE_FORMAT=text
       - LDAP_HOST=ldap_server
       - LDAP_BASEDN=dc=shihadeh,dc=cloud
       - LDAP_ROOTDN=cn=admin,dc=shihadeh,dc=cloud
