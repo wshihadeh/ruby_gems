@@ -17,7 +17,7 @@ module GeminaboxApp
             (GemIndex.new?(gem) || GemIndex.find(gem).username == username) &&
             User.find(username)&.ldap_groups&.include?('maintainer')
           ) ||
-          User.find(username)&.ldap_groups&.include?('adminco')
+          User.find(username)&.ldap_groups&.include?('admin')
         )
       end
 

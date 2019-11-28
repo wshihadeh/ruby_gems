@@ -7,7 +7,7 @@ class App
       use Rack::Session::Pool, expire_after: 1000
       use Rack::Protection
       use GeminaboxApp::Middleware::HealthCheck
-      use GeminaboxApp::Middleware::SignUp,
+      use GeminaboxApp::Middleware::SignUp, App.ldap,
           file: "#{App.root}/config/ldap.yml"
       use GeminaboxApp::Middleware::WebRequestsLdapAuth,
           file: "#{App.root}/config/ldap.yml"
