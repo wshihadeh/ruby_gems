@@ -13,7 +13,7 @@ This project is built on top of [Geminabox](https://github.com/geminabox/geminab
 - Protecting upload/delete web requests using ldap authentication.
 - Generating API keys for the users.
 - Protecting api call using ldap authentication or  api keys.
-- Manage ussers in three groups admin, maintainer and developer.
+- Manage users in three groups admin, maintainer and developer.
   - developer is the default group and it has only read access.
   - maintainer allow the users to push and delete their own gems only.
   - admin allow users to push delete all gems.
