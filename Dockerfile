@@ -15,6 +15,12 @@ RUN addgroup -g 1000 rubygems && \
     apk add linux-headers build-base curl openldap-dev git && \
     rm -rf /var/cache/apk/*
 
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/apk/repositories && \
+    echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/community' >> /etc/apk/repositories
+
+RUN apk update && \
+    apk add --no-cache libssl1.0
+
 ADD . /application
 RUN chown -R rubygems:rubygems /application
 
