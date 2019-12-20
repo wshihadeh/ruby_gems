@@ -32,7 +32,7 @@ GEM
     multipart-post (2.1.1)
     mustermann (1.0.3)
     nesty (1.0.2)
-    net-ldap (0.16.0)
+    net-ldap (0.16.2)
     nio4r (2.5.2)
     parallel (1.19.1)
     parser (2.6.5.0)
