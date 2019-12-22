@@ -37,7 +37,7 @@ GEM
     parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
-    puma (4.3.0)
+    puma (4.3.1)
       nio4r (~> 2.0)
     rack (2.0.8)
     rack-console (1.3.1)
@@ -71,7 +71,7 @@ PLATFORMS
 DEPENDENCIES
   geminabox!
   net-ldap (~> 0.16.0)
-  puma (~> 4.3.0)
+  puma (~> 4.3.1)
   rack-auth-ldap!
   rack-console
   rubocop
