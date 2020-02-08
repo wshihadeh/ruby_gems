@@ -1,6 +1,6 @@
 # Image name
 NAME := rubygems
-# Project namespace: adib by default
+# Project namespace: wshihadeh by default
 NAMESPACE ?= wshihadeh
 # Docker registry
 REGISTRY ?= index.docker.io
