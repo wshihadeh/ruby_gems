@@ -8,13 +8,20 @@ ENV LOG_TO_STDOUT=true
 
 EXPOSE 8080
 
-RUN addgroup -g 1000 rubygems && \
-    adduser -S -G rubygems -u 1000 -h /application rubygems && \
+RUN addgroup -g 501 rubygems && \
+    adduser -S -G rubygems -u 501 -h /application rubygems && \
     chown -R rubygems /usr/local/bundle && \
     apk update && \
     apk add linux-headers build-base curl openldap-dev git && \
     rm -rf /var/cache/apk/*
 
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/apk/repositories && \
+    echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/community' >> /etc/apk/repositories
+
+RUN apk update && \
+    apk add --no-cache libssl1.0
+
+USER root
 ADD . /application
 RUN chown -R rubygems:rubygems /application
 
