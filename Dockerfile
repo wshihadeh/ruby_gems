@@ -29,9 +29,11 @@ USER rubygems
 WORKDIR /application
 
 RUN gem install bundler && \
+    bundle config set deployment 'true' && \
+    bundle config set frozen 'true' && \
     rm -rf /usr/lib/lib/ruby/gems/*/cache/*
 
-RUN bundle install --deployment --local --quiet --frozen
+RUN bundle install --local --quiet
 
 COPY ./docker-entrypoint.sh /
 

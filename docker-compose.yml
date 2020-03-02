@@ -18,9 +18,9 @@ services:
       - LDAP_ROOTDN=cn=admin,dc=shihadeh,dc=cloud
       - LDAP_PASSDN=test1234
       - LDAP_PORT=389
-      - LDAP_USERNAME_LDAP_ATTRIBUT=givenName
-      - LDAP_LDAP_GROUP_BASE=ou=Groups,dc=shihadeh,dc=cloud
-      - LDAP_LDAP_GROUP_FILTER=(&(objectClass=groupOfNames)(member={dn}))
+      - LDAP_USERNAME_ATTRIBUTE=givenName
+      - LDAP_GROUP_BASE=ou=Groups,dc=shihadeh,dc=cloud
+      - LDAP_GROUP_FILTER=(&(objectClass=groupOfNames)(member={dn}))
 
   ldap_server:
     image: osixia/openldap:1.2.4

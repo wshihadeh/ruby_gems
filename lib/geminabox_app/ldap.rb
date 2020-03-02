@@ -27,7 +27,7 @@ module GeminaboxApp
       conn = ldap_connection
       return false unless conn
 
-      filter = Net::LDAP::Filter.eq(@configs[:username_ldap_attribut], username)
+      filter = Net::LDAP::Filter.eq(@configs[:username_ldap_attribute], username)
       conn.bind_as(filter: filter, password: password)
     end
 
@@ -87,7 +87,7 @@ module GeminaboxApp
         passdn: '',
         auth: true,
         scope: :subtree,
-        username_ldap_attribut: 'givenName',
+        username_ldap_attribute: 'givenName',
         ldap_group_base: 'ou=group,dc=domain,dc=tld',
         ldap_group_filter: '(&(objectClass=groupOfNames)(member={dn}))',
         ldaps: false,

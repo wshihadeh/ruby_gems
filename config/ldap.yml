@@ -6,9 +6,9 @@ production: &ldap_defaults
   scope: :subtree
   auth: true
   port:                   <%= ENV.fetch('LDAP_PORT', '389') %>
-  username_ldap_attribut: <%= ENV.fetch('LDAP_USERNAME_LDAP_ATTRIBUTE', 'givenName') %>
-  ldap_group_base:        <%= ENV.fetch('LDAP_LDAP_GROUP_BASE', 'ou=Groups,dc=shihadeh,dc=cloud') %>
-  ldap_group_filter:      <%= ENV.fetch('LDAP_LDAP_GROUP_FILTER', '(&(objectClass=groupOfNames)(member={dn}))') %>
+  username_ldap_attribute: <%= ENV.fetch('LDAP_USERNAME_ATTRIBUTE', 'givenName') %>
+  ldap_group_base:        <%= ENV.fetch('LDAP_GROUP_BASE', 'ou=Groups,dc=shihadeh,dc=cloud') %>
+  ldap_group_filter:      <%= ENV.fetch('LDAP_GROUP_FILTER', '(&(objectClass=groupOfNames)(member={dn}))') %>
   ldaps: false
   starttls: false
   tls_options: nil
