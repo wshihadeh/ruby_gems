@@ -14,21 +14,19 @@ services:
       - GEM_DATA_DIR_PATH=/application/data
       - STORE_FORMAT=text
       - LDAP_HOST=ldap_server
-      - LDAP_BASEDN=dc=shihadeh,dc=cloud
-      - LDAP_ROOTDN=cn=admin,dc=shihadeh,dc=cloud
+      - LDAP_BASEDN=dc=shihadeh,dc=intern
+      - LDAP_ROOTDN=cn=admin,dc=shihadeh,dc=intern
       - LDAP_PASSDN=test1234
       - LDAP_PORT=389
       - LDAP_USERNAME_ATTRIBUTE=givenName
-      - LDAP_GROUP_BASE=ou=Groups,dc=shihadeh,dc=cloud
+      - LDAP_GROUP_BASE=ou=Groups,dc=shihadeh,dc=intern
       - LDAP_GROUP_FILTER=(&(objectClass=groupOfNames)(member={dn}))
 
   ldap_server:
-    image: osixia/openldap:1.2.4
+    image: wshihadeh/ldap:withdata
     environment:
       LDAP_ADMIN_PASSWORD: test1234
-      LDAP_DOMAIN: shihadeh.cloud
-      LDAP_ORGANISATION: Al Inc.
-      LDAP_BASE_DN: dc=shihadeh,dc=cloud
+      LDAP_BASE_DN: dc=shihadeh,dc=intern
     ports:
       - 389:389
     volumes:
