@@ -15,9 +15,9 @@ module GeminaboxApp
         (!gem.nil? && !username.nil?) && (
           (
             (GemIndex.new?(gem) || GemIndex.find(gem).username == username) &&
-            User.find(username)&.ldap_groups&.include?('maintainer')
+            User.find(username)&.ldap_groups&.include?(ENV.fetch('lDAP_MAINTAINER_GROUP_NAME', 'maintainer'))
           ) ||
-          User.find(username)&.ldap_groups&.include?('admin')
+          User.find(username)&.ldap_groups&.include?(ENV.fetch('lDAP_ADMIN_GROUP_NAME', 'admin'))
         )
       end
 
