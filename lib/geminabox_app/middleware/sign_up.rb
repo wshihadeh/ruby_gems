@@ -54,7 +54,7 @@ module GeminaboxApp
         user.ldap_groups = ldap_groups
         user.save
 
-        ApiKeyIndex.new(user.api_key, user).save
+        ApiKeyIndex.new(user.api_key, username).save
         user.api_key
       end
 
